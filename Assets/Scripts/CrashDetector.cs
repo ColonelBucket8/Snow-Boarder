@@ -18,13 +18,15 @@ public class CrashDetector : MonoBehaviour
 
         if (other.gameObject.CompareTag("Ground"))
         {
+            FindObjectOfType<PlayerController>().DisableControls();
             crashEffect.Play();
             GetComponent<AudioSource>().PlayOneShot(crashSFX);
-            Invoke(nameof(ResetLevel), loadDelay);
+
+            Invoke(nameof(ReloadScene), loadDelay);
         }
     }
 
-    private void ResetLevel()
+    private void ReloadScene()
     {
         SceneManager.LoadScene(0);
     }
