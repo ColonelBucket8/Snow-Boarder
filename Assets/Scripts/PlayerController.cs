@@ -48,8 +48,5 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D()
-    {
 
-    }
 }
