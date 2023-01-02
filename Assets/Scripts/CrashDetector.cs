@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CrashDetector : MonoBehaviour
 {
@@ -8,8 +9,7 @@ public class CrashDetector : MonoBehaviour
 
         if (other.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("You hit your head!");
-
+            SceneManager.LoadScene(0);
         }
     }
 }
