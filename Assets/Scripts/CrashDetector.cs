@@ -4,11 +4,12 @@ using UnityEngine.SceneManagement;
 public class CrashDetector : MonoBehaviour
 {
     [SerializeField] private float loadDelay = 0.5f;
-    [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private ParticleSystem crashEffect;
+    [SerializeField] private AudioClip crashSFX;
 
     void Start()
     {
-        particleSystem.Stop();
+        crashEffect.Stop();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -17,7 +18,8 @@ public class CrashDetector : MonoBehaviour
 
         if (other.gameObject.CompareTag("Ground"))
         {
-            particleSystem.Play();
+            crashEffect.Play();
+            GetComponent<AudioSource>().PlayOneShot(crashSFX);
             Invoke(nameof(ResetLevel), loadDelay);
         }
     }

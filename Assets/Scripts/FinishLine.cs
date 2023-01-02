@@ -14,8 +14,10 @@ public class FinishLine : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Invoke(nameof(ReloadScene), loadDelay);
+            GetComponent<AudioSource>().Play();
             particleSystem.Play();
+
+            Invoke(nameof(ReloadScene), loadDelay);
         }
     }
 
