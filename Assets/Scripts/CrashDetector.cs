@@ -7,6 +7,8 @@ public class CrashDetector : MonoBehaviour
     [SerializeField] private ParticleSystem crashEffect;
     [SerializeField] private AudioClip crashSFX;
 
+    private bool hasCrashed = false;
+
     void Start()
     {
         crashEffect.Stop();
@@ -16,8 +18,10 @@ public class CrashDetector : MonoBehaviour
     {
         // if (other.gameObject.CompareTag("Finish")) return;
 
-        if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Ground") && !hasCrashed)
         {
+            hasCrashed = true;
+
             FindObjectOfType<PlayerController>().DisableControls();
             crashEffect.Play();
             GetComponent<AudioSource>().PlayOneShot(crashSFX);
